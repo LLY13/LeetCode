@@ -1,0 +1,23 @@
+public class Solution {
+    public int countBattleships(char[][] board) {
+        int m = board.length;                                     //二维数组长宽
+        int n = board[0].length;
+        int count = 0;
+        
+        for(int i=0;i<m;i++){
+        	for(int j=0;j<n;j++){
+        		if(board[i][j]=='.') continue;                         //左边和上面没有*则他是头   +1
+        		if(j>0&&board[i][j-1]=='.') continue;                  //   记住continue 的用法（反向思维）
+        		if(i>0&&board[i-1][j]=='.') continue;
+        		count++;
+        	}
+        }
+        return count;
+    }
+}
+
+
+
+
+
+

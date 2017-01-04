@@ -1,0 +1,21 @@
+
+//understand but cannt
+
+//solution   1
+public class Solution {
+    public int hammingDistance(int x, int y) {
+        return Integer.bitCount(x^y);               //x^y:xor     bitcount:the num of 1 in binary
+    }
+}
+
+
+// solution    2
+public int hammingDistance(int x, int y) {
+        int xor = x^y;                                 
+        int res = 0;
+        while(xor!=0) {
+            res+= xor & 1;                          //按位的与运算
+            xor >>= 1;                              //右移一位
+        }
+        return res;
+    }

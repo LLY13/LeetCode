@@ -6,9 +6,9 @@ public class Solution {
         
         for(int i=0;i<m;i++){
         	for(int j=0;j<n;j++){
-        		if(board[i][j]=='.') continue;                         //左边和上面没有*则他是头   +1
-        		if(j>0&&board[i][j-1]=='.') continue;                  //   记住continue 的用法（反向思维）
-        		if(i>0&&board[i-1][j]=='.') continue;
+        		if(board[i][j]=='.') continue;                         //   当上面或者左边为*时  这格不是船头
+        		if(j>0&&board[i][j-1]=='X') continue;                  //   记住continue 的用法（反向思维）
+        		if(i>0&&board[i-1][j]=='X') continue;
         		count++;
         	}
         }
@@ -18,6 +18,18 @@ public class Solution {
 
 
 
+//和上面答题思路差不多   但是更好理解
 
 
-
+public int countBattleships(char[][] board) {
+	if (board == null || board.length == 0 || board[0].length == 0) return 0;
+	int R = board.length, C = board[0].length, cnt = 0;
+	for (int i = 0; i < R; i++) {
+		for (int j = 0; j < C; j++) {
+			if (board[i][j] == 'X' && (i == 0 || board[i - 1][j] == '.') && (j == 0 || board[i][j - 1] == '.'))
+				cnt++;                          //左边和上面没有*则他是头   +1
+		}
+	}
+	
+	return cnt;
+}

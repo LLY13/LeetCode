@@ -1,0 +1,19 @@
+public class Solution {
+    public String reverseString(String s) {
+        char[] s1 = s.toCharArray();
+        StringBuffer sb = new StringBuffer();             //先将字符串转为字符数组 .toCharString()
+        for(int i=0;i<s1.length;i++){                     //创建一个缓冲数组   StringBuffer  sb.append
+        	sb.append(s1[s1.length-i-1]);                   //将缓冲数组转为字符串  sb.toString
+        }
+        
+		return sb.toString();
+    }
+}
+
+
+
+
+    public String reverseString(String s) {
+        StringBuilder sb = new StringBuilder(s);            //learn to use StringBuffer
+        return sb.reverse().toString();
+    }

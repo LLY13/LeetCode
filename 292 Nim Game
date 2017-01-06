@@ -1,0 +1,5 @@
+boolean flag = false;
+        if(n%4!=0){
+        	flag = true;                               //my solution    it's like pupil's math test
+        }
+        return flag;

@@ -1,0 +1,35 @@
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> ret = new ArrayList<Integer>();
+        
+        for(int i = 0; i < nums.length; i++) {
+            int val = Math.abs(nums[i]) - 1;
+            if(nums[val] > 0) {
+                nums[val] = -nums[val];
+            }
+        }
+        
+        for(int i = 0; i < nums.length; i++) {                                 //i cant do it=.=
+            if(nums[i] > 0) {
+                ret.add(i+1);
+            }
+        }
+        return ret;
+    }
+    
+    
+    
+    
+     List<Integer> result = new ArrayList<Integer>();
+        int n = nums.length;
+        int a[] = new int [n + 1];
+        for(int i =0 ; i <= n; i++)
+           a[i] = 0;
+        for( int i =0; i < n;i++)                                                 //easy to understand
+           a[nums[i]]++;
+        
+        for( int i=1; i <= n;i++){
+            if(a[i]==0)
+               result.add(i);
+        }
+        
+        return result;

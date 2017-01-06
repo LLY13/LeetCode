@@ -3,3 +3,9 @@ boolean flag = false;
         	flag = true;                               //my solution    it's like pupil's math test
         }
         return flag;
+
+
+
+public boolean canWinNim(int n) {    
+    return n % 4 != 0 ;
+}

@@ -1,0 +1,12 @@
+public class Solution {
+    public int getSum(int a, int b) {
+        if(a==0) return b;
+        if(b==0) return a;
+        while (b!=0){
+        	int carry = a & b;                         //carry 是进位   相当于找出a+b中二进制要进位的地方
+        	a = a ^ b;                                 //  xor  不进位的加法
+        	b = carry << 1; 	                         //  需要进位的地方左移一位
+        }
+        return a;
+    }
+}

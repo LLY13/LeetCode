@@ -1,0 +1,30 @@
+public class Solution {
+    public char findTheDifference(String s, String t) {                 // my solution 
+        char[] sarray = s.toCharArray();
+        char[] tarray = t.toCharArray();
+        Arrays.sort(sarray);
+        Arrays.sort(tarray);
+        char res;
+        for(int i=0;i<sarray.length;i++){
+        	if(sarray[i]!=tarray[i]){
+        		res = tarray[i];
+        		return res;
+        	}
+        }
+        res = tarray[tarray.length-1];
+        return res;
+    }
+}
+
+
+
+public char findTheDifference(String s, String t) {
+	char c = 0;
+	for (int i = 0; i < s.length(); ++i) {                       //bit calculate;same as find the single number
+c ^= s.charAt(i);
+	}
+	for (int i = 0; i < t.length(); ++i) {
+		c ^= t.charAt(i);
+	}
+	return c;
+}

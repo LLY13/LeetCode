@@ -1,0 +1,16 @@
+public class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        int num = 0;
+        Arrays.sort(s);
+        for(int i=0;i<s.length;i++){
+        	for(int j=0;j<g.length;j++){                  //my solution
+        		if(g[j]<=s[i] && g[j]>=0){                  // can also sort g, and it's faster than mine
+        			num++;
+        			g[j] = -g[j];
+        			break;
+        		}
+        	}
+        }
+        return num;
+    }
+}

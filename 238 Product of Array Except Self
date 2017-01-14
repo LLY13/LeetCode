@@ -1,0 +1,16 @@
+public class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int len = nums.length;
+        int[] res = new int[len];
+        res[0] = 1;
+        for(int i=1;i<len;i++){
+        	res[i] = res[i-1] * nums[i-1];                  //cannot use division so this is other's idea   but i code it
+        }
+        int right = 1;
+        for(int i=len-2;i>=0;i--){                         // it means that divide it to left and right respectively,and calculate product
+        	right *= nums[i+1];
+        	res[i] = right * res[i];
+        }
+        return res;
+    }
+}

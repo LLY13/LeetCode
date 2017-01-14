@@ -1,0 +1,14 @@
+public class Solution {
+    public int minMoves(int[] nums) {
+        int res = 0;
+    	int min = nums[0];
+    	int n = nums.length;
+        for(int m : nums){
+        	min = Math.min(min, m);         //the most clever point is that adding 1 to n-1 elements is the same as substracting 1 frome the
+        }                                 // biggest one  (and i think my add&max solution is also right but one case cannot pass(1,1,2^31-1)
+        for(int m: nums){
+        	res += m - min;
+        }
+        return res;
+    }
+}

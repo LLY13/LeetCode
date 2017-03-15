@@ -1,0 +1,72 @@
+// my solution . too long
+import java.util.ArrayList;
+
+public class Solution {
+	static char[] firstRow = {'q','w','e','r','t','y','u','i','o','p'};
+	static char[] secondRow = {'a','s','d','f','g','h','j','k','l'};
+	static char[] thirdRow = {'z','x','c','v','b','n','m'};
+
+	
+    public static String[] findWords(String[] words) {
+    	ArrayList<String> res1 = new ArrayList<>();
+    	for(int i=0;i<words.length;i++){
+    		int sum = 1;
+    		int cha = isInChar(words[i]);
+    		if(cha == 1){
+    			for(int j=1;j<words[i].length();j++){
+    				for(int m=0;m<firstRow.length;m++){
+    					if(Character.toLowerCase(words[i].charAt(j))==firstRow[m]){
+    						sum++;
+    					}
+    				}
+    				}
+    			}
+    		if(cha == 2){
+    			for(int j=1;j<words[i].length();j++){
+    				for(int m=0;m<secondRow.length;m++){
+    					if(Character.toLowerCase(words[i].charAt(j))==secondRow[m]){
+    						sum++;
+    					}
+    				}
+    				}
+    			}
+    		if(cha == 3) {
+    			for(int j=1;j<words[i].length();j++){
+    				for(int m=0;m<thirdRow.length;m++){
+    					if(Character.toLowerCase(words[i].charAt(j))==thirdRow[m]){
+    						sum++;
+    					}
+    				}
+    				}
+    			}
+			if(sum == words[i].length()){
+    			res1.add(words[i]);
+			}
+    	}
+    	Object[] array = res1.toArray();
+    	String[] res = new String[array.length];
+    	for(int i=0;i<array.length;i++){
+    		  res[i]=(String)array[i];
+    		}
+    	return res;
+    }
+    
+    public static int isInChar(String word){
+    	for(int i=0;i<firstRow.length;i++){
+    		if(firstRow[i] == Character.toLowerCase(word.charAt(0))){
+    			return 1;
+    		}
+    	}
+    	for(int i=0;i<secondRow.length;i++){
+    		if(secondRow[i] == Character.toLowerCase(word.charAt(0))){
+    			return 2;
+    		}
+    	}
+    	for(int i=0;i<thirdRow.length;i++){
+    		if(thirdRow[i] == Character.toLowerCase(word.charAt(0))){
+    			return 3;
+    		}
+    	}
+		return 0;
+    }
+}

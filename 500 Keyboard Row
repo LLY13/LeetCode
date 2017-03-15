@@ -43,12 +43,7 @@ public class Solution {
     			res1.add(words[i]);
 			}
     	}
-    	Object[] array = res1.toArray();
-    	String[] res = new String[array.length];
-    	for(int i=0;i<array.length;i++){
-    		  res[i]=(String)array[i];
-    		}
-    	return res;
+    	return res1.toArray(new String[0]);
     }
     
     public static int isInChar(String word){

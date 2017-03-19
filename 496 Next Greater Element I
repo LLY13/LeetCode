@@ -1,0 +1,56 @@
+// my solution without stack
+public class Solution {
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+    	int[] res = new int[findNums.length];
+    	for(int i=0;i<findNums.length;i++){
+    		int sub = 0;
+    		int greater = -1;
+    		boolean flag = false;
+    		for(int j=0;j<nums.length;j++){
+    			if(nums[j] - findNums[i] == 0){
+    				flag = true;
+    			}
+    			if(flag == true){
+    				if(nums[j] - findNums[i] > 0){
+    					greater = nums[j];
+    					break;
+    				}
+    			}
+    		}
+    		res[i] = greater;
+    	}
+		return res;
+    }
+}
+
+
+/*Key observation:
+Suppose we have a decreasing sequence followed by a greater number
+For example [5, 4, 3, 2, 1, 6] then the greater number 6 is the next greater element for all previous numbers in the sequence
+
+We use a stack to keep a decreasing sub-sequence, whenever we see a number x greater than stack.peek() we pop all elements less than x and for all the popped ones, their next greater element is x
+For example [9, 8, 7, 3, 2, 1, 6]
+The stack will first contain [9, 8, 7, 3, 2, 1] and then we see 6 which is greater than 1 so we pop 1 2 3 whose next greater element should be 6
+*/
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
+public class Solution {
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+    	Map<Integer, Integer> map = new HashMap<>();
+    	Stack<Integer> stack = new Stack<>();
+    	for(int num : nums){
+    		while (!stack.isEmpty() && stack.peek() < num) {
+				map.put(stack.pop(), num);
+			}
+    		stack.push(num);
+    	}
+    	
+    	for(int i=0; i<findNums.length; i++){
+    		findNums[i] = map.getOrDefault(findNums[i], -1);
+    	}
+		return nums;
+    	
+    }
+}

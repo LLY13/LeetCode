@@ -1,0 +1,24 @@
+// my solution
+public class Solution {
+    public boolean detectCapitalUse(String word) {
+    	boolean flag = false;
+    	if(word.toLowerCase().equals(word)){
+    		flag = true;
+    	}
+    	if(word.toUpperCase().equals(word)){
+    		flag = true;
+    	}
+    	if(word.substring(1).toLowerCase().equals(word.substring(1)) && 
+    			word.substring(0, 1).toUpperCase().equals(word.substring(0, 1))){
+    		flag = true;
+    	}
+    		
+		return flag;
+        
+    }
+}
+
+// regex
+public boolean detectCapitalUse(String word) {
+    return word.matches("[A-Z]+|[a-z]+|[A-Z][a-z]+");
+}

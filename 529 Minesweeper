@@ -1,0 +1,56 @@
+//my solution
+
+public class Solution {
+    public char[][] updateBoard(char[][] board, int[] click) {
+    	
+        if (board[click[0]][click[1]] == 'M') {
+			revealMine(board, click);
+        }else{
+        	revealEmpty(board, click);			
+		}
+    	return board;
+    }
+    
+    private int neighbors(char[][] board, int[] click) {
+    	int mines = 0;
+    	for(int i=click[0]-1;i<=click[0]+1;i++){
+    		for(int j=click[1]-1;j<=click[1]+1;j++){
+    			try {
+					if(board[i][j] == 'M'){
+						mines++;
+					}
+				} catch (ArrayIndexOutOfBoundsException e) {
+					continue;
+				}
+    		}
+    	}
+    	return mines;
+    }
+    
+    private void revealEmpty(char[][] board, int[] click) {
+		if(neighbors(board, click) == 0){
+			board[click[0]][click[1]] = 'B';
+			for(int i=click[0]-1;i<=click[0]+1;i++){
+	    		for(int j=click[1]-1;j<=click[1]+1;j++){
+	    				int[] nei = {i,j};
+	    			try {
+	    				if(board[i][j] == 'E'){
+	    					revealEmpty(board, nei);
+	    				}
+						}
+					 catch (ArrayIndexOutOfBoundsException e) {
+						continue;
+					}
+	    		}
+	    	}
+		}else{
+			board[click[0]][click[1]] = String.valueOf(neighbors(board, click)).charAt(0);   //integer to char
+		}
+	}
+
+    
+
+	public void revealMine(char[][] board, int[] click){
+    	board[click[0]][click[1]] = 'X';
+    }
+}

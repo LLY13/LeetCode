@@ -1,0 +1,25 @@
+public class Solution {
+    public int[] constructRectangle(int area) {
+    	int[] res = {0,0};
+    	int min = area;
+    	for(int i=1;i<=area/2 + 1;i++){
+    		int sub = area/i - i;
+    		if(area%i == 0 && sub>=0 && sub<min){
+    			min = sub;
+    			res[0] = area/i;
+    			res[1] = i;
+    		}
+    	}
+		return res;
+        
+    }
+}
+
+// use sqrt instead of divide by 2
+
+
+public int[] constructRectangle(int area) {
+        int w = (int)Math.sqrt(area);
+	while (area%w!=0) w--;
+	return new int[]{area/w, w};
+}

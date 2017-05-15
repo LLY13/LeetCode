@@ -1,0 +1,14 @@
+public class Solution {
+    public String complexNumberMultiply(String a, String b) {
+    	// a = m + ni   b = x + yi
+    	int m = Integer.parseInt(a.split("\\+")[0]);
+    	int n = Integer.parseInt(a.split("\\+")[1].split("i")[0]);
+    	int x = Integer.parseInt(b.split("\\+")[0]);
+    	int y = Integer.parseInt(b.split("\\+")[1].split("i")[0]);
+    	//result = c + di
+    	int c = m * x - n * y;
+    	int d = m * y + n * x;
+		return "" + c + "+" + d + "i";
+        
+    }
+}

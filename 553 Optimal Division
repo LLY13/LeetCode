@@ -1,0 +1,19 @@
+public class Solution {
+    public String optimalDivision(int[] nums) {
+        int len = nums.length;
+        if (len == 1) {
+			return "" + nums[0];
+		}else if (len == 2) {
+			return "" + nums[0] + "/" + nums[1];
+		}else {
+			String string = "";
+			string += nums[0] + "/" + "(";
+			for(int i=1;i<len;i++){
+				string += nums[i] + "/";
+			}
+			return string.substring(0 , string.length() - 1) + ")";
+		}
+    }
+}
+
+//stupid question after thinking about it

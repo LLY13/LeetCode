@@ -1,0 +1,28 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+    	LinkedList<Integer> res = new LinkedList<Integer>();
+    	for(int i=left; i<=right; i++){
+    		if (isDividing(i)) {
+				res.add(i);
+			}
+    	}
+		return res;      
+    }
+    
+    private boolean isDividing(int num) {
+    	int divided;
+    	//nums is num to be changed
+    	int nums = num;
+    	while (nums != 0) {
+    		if ((divided = nums % 10) != 0){
+        		nums = nums /10;
+    			if (num % divided != 0) {
+    				return false;
+    			}
+    		}else {
+				return false;
+			}
+		}
+		return true;
+	}
+}

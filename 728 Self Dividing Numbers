@@ -42,7 +42,7 @@ class Solution {
     }
     public boolean selfDividing(int n) {
         for (char c: String.valueOf(n).toCharArray()) {
-            if (c == '0' || (n % (c - '0') > 0))
+            if (c == '0' || (n % (c - '0') > 0))              //c - '0'!!! great idea
                 return false;
         }
         return true;

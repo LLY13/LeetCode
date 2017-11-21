@@ -1,0 +1,28 @@
+//two things to remember
+// one is use equals
+//two is dont use stack.size() in a for loop because if use pop() in it  the size will change
+
+
+class Solution {
+    public int calPoints(String[] ops) {
+    	Stack<Integer> stack = new Stack<Integer>();
+    	int sum = 0;
+    	for (int i = 0; i < ops.length; i++) {
+			if (ops[i].equals("C")) {
+				stack.pop();
+			}else if (ops[i].equals("D")) {
+				stack.push(stack.peek() * 2);
+			}else if (ops[i].equals("+")) {
+				stack.push(stack.peek() + stack.get(stack.size()-2));
+			}else {
+				stack.push(Integer.parseInt(ops[i]));
+			}
+		}
+    	int len = stack.size();
+    	for (int i = 0; i < len; i++) {
+			sum = sum + stack.pop();	
+		}
+		return sum;
+    }
+    
+}

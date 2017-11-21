@@ -1,0 +1,22 @@
+
+
+class Solution {
+	int res = 0;
+    public int countSubstrings(String s) {
+        if (s == null) return 0;
+        
+        for(int i=0; i<s.length(); i++){
+        	countP(s, i, i);                        //i is the middle number for odd
+        	countP(s, i, i+1);                       //i is the middle number for even   i+1 wont be out of border
+        }
+        return res;
+    }
+    
+    private void countP(String s, int l, int r) {
+		while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {             // put r < s.length in front of ==
+			res++;
+			l--;
+			r++;
+		}
+	}
+}

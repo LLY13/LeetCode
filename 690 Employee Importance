@@ -1,0 +1,44 @@
+//DFS
+
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+    	Map<Integer, Employee> map = new HashMap<Integer, Employee>();
+    	for (Employee employee : employees) {
+			map.put(employee.id, employee);
+		}
+		return getImportanceHelper(map, id);
+        
+    }
+    
+    private int getImportanceHelper(Map<Integer, Employee> map, int id) {
+    	Employee root = map.get(id);
+    	int total = root.importance;
+    	for (Integer sub : root.subordinates) {
+			total += getImportanceHelper(map, sub);
+		}
+		return total;
+		
+	}
+}
+ 
+//BFS                 seems like bfs needs queue at most time
+
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+    	int total = 0;
+    	Map<Integer, Employee> map = new HashMap<Integer, Employee>();
+    	for (Employee employee : employees) {
+			map.put(employee.id, employee);
+		}
+		Queue<Employee> queue = new LinkedList<Employee>();
+		queue.offer(map.get(id));
+		while (!queue.isEmpty()) {
+			Employee employee = queue.poll();
+			total += employee.importance;
+			for (Integer sub : employee.subordinates){
+				queue.offer(map.get(sub));
+			}
+		}
+        return total;
+    }
+}

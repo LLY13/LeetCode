@@ -1,0 +1,35 @@
+//my solution
+//tips:  in java :  one-to-many  use map(key, list)
+//                 to get all keys in map using map.keySet
+
+class Solution {
+    public List<List<String>> findDuplicate(String[] paths) {
+    	Map<String, List<String>> map = new HashMap<String, List<String>>();
+    	for (String string : paths) {
+			String[] files = string.split(" ");
+			for (int i = 1; i < files.length; i++) {
+				String[] nameContents = files[i].split(".txt\\(");
+				nameContents[1] = nameContents[1].substring(0, nameContents[1].length() - 1);
+				if (map.get(nameContents[1]) == null) {
+					List<String> newList = new ArrayList<String>();
+					newList.add(files[0] + "/" + nameContents[0] + ".txt");
+					map.put(nameContents[1], newList);
+				}else {
+					List<String> list = map.get(nameContents[1]);
+					list.add(files[0] + "/" + nameContents[0] + ".txt");
+					map.put(nameContents[1], list);
+				}
+			}
+		}
+    	
+    	List<List<String>> res = new ArrayList<List<String>>();
+    	Set<String> keys = map.keySet();
+    	for (String key : keys) {
+    		if (map.get(key).size() != 1) {
+    			res.add(map.get(key));
+			}
+		}
+		return res;
+    	
+    }
+}

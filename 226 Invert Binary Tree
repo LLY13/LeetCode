@@ -1,0 +1,16 @@
+// mysolution
+
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+    	if (root == null) {
+			return null;
+		}
+		TreeNode newNode = null;
+		newNode = root.right;
+		root.right = root.left;
+		root.left = newNode;
+		invertTree(root.left);
+		invertTree(root.right); 
+    	return root;
+    }  
+}

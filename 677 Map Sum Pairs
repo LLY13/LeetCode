@@ -1,0 +1,22 @@
+class MapSum {
+	HashMap<String, Integer> map;
+    /** Initialize your data structure here. */
+    public MapSum() {
+        map = new HashMap<String, Integer>();
+    }
+    
+    public void insert(String key, int val) {
+        map.put(key, val);
+    }
+    
+    public int sum(String prefix) {
+    	int res = 0;
+		Set<String> keys = map.keySet();
+        for (String key : keys) {
+			if (key.startsWith(prefix)) {                        //String startWith!!!
+				res += map.get(key);
+			}
+		}
+        return res;
+    }
+}

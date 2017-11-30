@@ -1,0 +1,42 @@
+//my solution
+//time complexity n^2
+class Solution {
+	int[] res;
+	
+    public int[] constructArray(int n, int k) {
+    	res = new int[n];
+    	for (int i = 1; i <= n; i++) {
+			res[i-1] = i;
+		}
+    	for (int i = 0; i < k; i=i+2) {
+        	for (int j = 1; j < k-i; j++) {
+    			swap(n-j, n-j-1);
+    		}
+		}
+
+		return res;
+        
+    }
+    private void swap(int a, int b) {
+    	int temp = res[a];
+		res[a] = res[b];
+		res[b] = temp;
+	}
+}
+
+
+
+class Solution {
+    public int[] constructArray(int n, int k) {
+        int[] ans = new int[n];
+        int c = 0;
+        for (int v = 1; v < n-k; v++) {
+            ans[c++] = v;
+        }
+        for (int i = 0; i <= k; i++) {
+            ans[c++] = (i%2 == 0) ? (n-k + i/2) : (n - i/2);
+        }
+        return ans;
+    }
+}
+
